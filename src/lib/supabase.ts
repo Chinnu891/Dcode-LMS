@@ -767,9 +767,11 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'your-anon-key
 
 // Debug environment variables
 console.log('🔧 Supabase Configuration:');
+console.log('Raw VITE_SUPABASE_URL from env:', import.meta.env.VITE_SUPABASE_URL);
 console.log('URL:', supabaseUrl);
 console.log('Key:', supabaseAnonKey ? `${supabaseAnonKey.substring(0, 20)}...` : 'Not found');
 console.log('Environment:', import.meta.env.MODE);
+console.log('All VITE env vars:', Object.keys(import.meta.env).filter(k => k.startsWith('VITE_SUPABASE')));
 
 // Validate configuration
 if (supabaseUrl === 'https://your-project-id.supabase.co' || supabaseAnonKey === 'your-anon-key-here') {
