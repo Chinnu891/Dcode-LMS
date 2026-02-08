@@ -1,0 +1,35 @@
+# Netlify Configuration
+[build]
+  # Build command
+  command = "npm run build:prod"
+  # Publish directory (where Vite outputs the build)
+  publish = "dist"
+
+# Environment variables are set in Netlify Dashboard
+# Go to: Site settings → Environment variables
+# Required variables:
+# - VITE_SUPABASE_URL
+# - VITE_SUPABASE_ANON_KEY
+# - VITE_SUPABASE_PUBLISHABLE_KEY
+
+# Redirect rules for SPA (Single Page Application)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache static assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
